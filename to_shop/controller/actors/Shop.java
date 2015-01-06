@@ -4,13 +4,10 @@ import to_shop.model.BuyEventEntry;
 import to_shop.model.ProductContainer;
 import to_shop.model.UniversalProductContainer;
 import to_shop.model.products.Product;
-import to_shop.model.products.Properties;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import static to_shop.model.products.Properties.PRICE;
 
 public class Shop {
 	private List<BuyEventEntry> historyList = new ArrayList<>();
@@ -28,20 +25,15 @@ public class Shop {
 	}
 	
 	public void setPrice(Product item, double price) {
-		container.addProduct(item);
-		container.setProp(item, PRICE, price);
+		// TODO
 	}
 
 	public double getPrice(Product item) {
-		if (container.getProp(item, PRICE) != null)
-			return (Double) container.getProp(item, Properties.PRICE);
-		else
-			return Double.POSITIVE_INFINITY;
+		return container.getPriceOf(item);
 	}
 	
 	public void addProduct(Product item, int amount, double price) {
-		container.addProduct(item, amount);
-		this.setPrice(item, price);
+		// TODO
 	}
 
 	public boolean sellProduct(Product item, int amount, Client client) {

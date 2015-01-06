@@ -2,6 +2,8 @@ package to_shop.model.products;
 
 public abstract class Product implements Cloneable {
 	String name;
+
+	Product() {}
 	
 	protected Product(String name) {
 		this.name = name;
@@ -21,7 +23,17 @@ public abstract class Product implements Cloneable {
 	}
 
 	@Override
-	public Product clone() throws CloneNotSupportedException {
-		return (Product) super.clone();
+	public Product clone()  {
+		try {
+			return (Product) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return super.toString(); //TODO
 	}
 }
