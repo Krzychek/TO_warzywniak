@@ -1,4 +1,4 @@
-package to_shop.controller.productBuilders;
+package to_shop.model.productBuilders;
 
 import to_shop.model.products.Carrot;
 
