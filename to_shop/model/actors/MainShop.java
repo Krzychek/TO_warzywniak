@@ -1,4 +1,4 @@
-package to_shop.controller.actors;
+package to_shop.model.actors;
 
 public class MainShop extends Shop {
 

@@ -1,7 +1,7 @@
 package to_shop.controller;
 
-import to_shop.controller.actors.Client;
-import to_shop.controller.actors.MainShop;
+import to_shop.model.actors.Client;
+import to_shop.model.actors.MainShop;
 
 public class MainController {
     private ClientController clientController;

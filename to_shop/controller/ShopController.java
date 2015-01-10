@@ -1,7 +1,7 @@
 package to_shop.controller;
 
-import to_shop.controller.actors.MainShop;
-import to_shop.controller.actors.Shop;
+import to_shop.model.actors.MainShop;
+import to_shop.model.actors.Shop;
 import to_shop.model.products.Apple;
 import to_shop.model.products.Banana;
 import to_shop.model.products.Carrot;

@@ -1,4 +1,4 @@
-package to_shop.controller.actors;
+package to_shop.model.actors;
 
 import to_shop.model.BuyEventEntry;
 import to_shop.model.ProductContainer;

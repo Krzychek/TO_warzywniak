@@ -1,6 +1,6 @@
 package to_shop.model;
 
-import to_shop.controller.actors.Client;
+import to_shop.model.actors.Client;
 import to_shop.model.products.Product;
 
 import java.util.Date;

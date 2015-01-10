@@ -1,7 +1,7 @@
 package to_shop.controller;
 
-import to_shop.controller.actors.Client;
-import to_shop.controller.actors.Shop;
+import to_shop.model.actors.Client;
+import to_shop.model.actors.Shop;
 import to_shop.model.products.Product;
 
 import java.util.Collection;

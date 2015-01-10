@@ -1,4 +1,4 @@
-package to_shop.controller.actors;
+package to_shop.model.actors;
 
 import to_shop.model.ProductContainer;
 import to_shop.model.UniversalProductContainer;

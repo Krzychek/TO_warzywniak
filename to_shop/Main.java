@@ -3,8 +3,8 @@ package to_shop;
 import to_shop.controller.ClientController;
 import to_shop.controller.MainController;
 import to_shop.controller.ShopController;
-import to_shop.controller.actors.Client;
-import to_shop.controller.actors.MainShop;
+import to_shop.model.actors.Client;
+import to_shop.model.actors.MainShop;
 import to_shop.view.CLIView;
 import to_shop.view.MainCLIView;
 
