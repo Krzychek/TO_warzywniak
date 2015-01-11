@@ -15,11 +15,12 @@ public abstract class Product implements Cloneable {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Product) {
-			return ((Product) obj).getName() == this.name;
-		} else {
-			return false;
-		}
+		if (obj instanceof DetailedProduct
+				&& ((DetailedProduct) obj).getProduct().equals(this)) {
+			return true;
+		} else if (obj instanceof Product)
+			return ((Product) obj).getName() == this.toString();
+		return false;
 	}
 
 	@Override
@@ -32,8 +33,10 @@ public abstract class Product implements Cloneable {
 		}
 	}
 
-	@Override
-	public String toString() {
-		return super.toString(); //TODO
+	public Product unPack() {
+		if (this instanceof DetailedProduct) {
+			return ((DetailedProduct) this).getProduct().unPack();
+		}
+		return this;
 	}
 }

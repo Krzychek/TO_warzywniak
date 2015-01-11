@@ -2,10 +2,7 @@ package to_shop.controller;
 
 import to_shop.model.actors.MainShop;
 import to_shop.model.actors.Shop;
-import to_shop.model.products.Apple;
-import to_shop.model.products.Banana;
-import to_shop.model.products.Carrot;
-import to_shop.model.products.Product;
+import to_shop.model.products.*;
 
 import java.util.Collection;
 
@@ -27,7 +24,7 @@ public class ShopController {
         shop.addProduct(item,amount,price);
     }
 
-    public Collection<Product> getProductCollection() {
+    public Collection<DetailedProduct> getProductCollection() {
         return shop.getProductCollection();
     }
 

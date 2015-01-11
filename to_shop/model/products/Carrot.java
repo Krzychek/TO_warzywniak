@@ -13,4 +13,5 @@ public class Carrot extends Veggie implements Cloneable {
 	public CarrotType getType() {
 		return type;
 	}
+
 }

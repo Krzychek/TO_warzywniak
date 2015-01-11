@@ -1,59 +1,67 @@
 package to_shop.model.products;
 
-public class ProductWrapper extends Product {
-    private Product simpleProduct;
+public class ProductWrapper extends DetailedProduct  {
+    private Product product;
     private double price;
     private int amount;
+    private double discount;
 
-    ProductWrapper() {}
-
+    private ProductWrapper() {}
     public ProductWrapper(Product product) {
-        simpleProduct = product;
+        this.product = product;
+        this.price = Double.POSITIVE_INFINITY;
+        this.amount = 0;
+    }
+    public ProductWrapper(Product product, double price, int amount) {
+        this.product = product.unPack();
+        this.price = price;
+        this.amount = amount;
         this.price = Double.POSITIVE_INFINITY;
         this.amount = 0;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void addAmount(int amount) {
-        this.amount += amount;
-    }
+    @Override
+    public void setPrice(double price) { this.price = price; }
+    @Override
+    public int getAmount() { return amount; }
+    @Override
+    public void addAmount(int amount) { this.amount += amount; }
+    @Override
+    public void setAmount(int amount) { this.amount = amount; }
+    @Override
+    public Product getProduct() { return product; }
+    @Override
+    public double getPrice() { return price; }
 
     @Override
-    public String getName() {
-        return simpleProduct.getName();
+    public String getName() { return product.getName(); }
+
+    @Override
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof ProductWrapper
-                && simpleProduct.equals(((ProductWrapper) obj).simpleProduct)
-                && price == ((ProductWrapper) obj).getPrice()
-                && amount == ((ProductWrapper) obj).getAmount()) {
+        if (obj instanceof DetailedProduct
+                && product.equals(((DetailedProduct) obj).getProduct())
+                && price == ((DetailedProduct) obj).getPrice()
+                && amount == ((DetailedProduct) obj).getAmount()) {
             return true;
         } else if (obj instanceof Product)
-            return simpleProduct.equals(obj);
+            return product.equals(obj);
         return false;
     }
 
     @Override
-    public Product clone()  {
-        Product simpleProduct = this.simpleProduct.clone();
-        return this;
+    public DetailedProduct clone()  {
+        ProductWrapper result = new ProductWrapper();
+        result.amount = amount;
+        result.price = price;
+        result.product = product.clone();
+        return result;
     }
 
     @Override
-    public String toString() {
-        return simpleProduct.toString();
-    }
+    public String toString() { return product.getName() + " - " + price + " x " + amount; }
 }

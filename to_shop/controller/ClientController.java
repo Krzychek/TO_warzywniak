@@ -2,6 +2,7 @@ package to_shop.controller;
 
 import to_shop.model.actors.Client;
 import to_shop.model.actors.Shop;
+import to_shop.model.products.DetailedProduct;
 import to_shop.model.products.Product;
 
 import java.util.Collection;
@@ -20,17 +21,14 @@ public class ClientController {
         return client.buy(shop,item,amount);
     }
 
-    public Collection<Product> getProductCollection() {
+    public Collection<DetailedProduct> getProductCollection() {
         return client.getProductCollection();
     }
 
-    public Collection<Product> getAvailableProducts() {
+    public Collection<DetailedProduct> getAvailableProducts() {
         return shop.getProductCollection();
     }
 
-    public double getPrice(Product item) {
-        return shop.getPrice(item);
-    }
     public Map<String, String> getStatistics() {
         HashMap<String, String> result = new HashMap<>();
         result.put("money",String.valueOf(client.getMoney()));
@@ -39,5 +37,9 @@ public class ClientController {
                 String.valueOf(client.getProductCollection().size())
         );
         return result;
+    }
+
+    public double getPrice(Product item) {
+        return shop.getPrice(item);
     }
 }

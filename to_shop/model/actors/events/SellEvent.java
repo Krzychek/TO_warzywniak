@@ -1,30 +1,31 @@
-package to_shop.model;
+package to_shop.model.actors.events;
 
 import to_shop.model.actors.Client;
+import to_shop.model.products.DetailedProduct;
 import to_shop.model.products.Product;
+import to_shop.model.products.ROProductWrapper;
 
 import java.util.Date;
 
-public class BuyEventEntry {
+public class SellEvent extends Event {
     private final Client client;
     private final Date date;
-    private final Product item;
+    private final DetailedProduct item;
     private final int amount;
-    private final double price;
 
-    public BuyEventEntry(Client client,Product item, int amount, double price) {
+    public SellEvent(Client client, Product item, double price, int amount) {
         this.client = client;
-        this.item = item;
+        this.item = new ROProductWrapper(item, price, amount);
         this.amount = amount;
-        this.price = price;
         this.date = new Date();
     }
 
+    @Override
     public Date getDate() {
         return date;
     }
 
-    public Product getItem() {
+    public DetailedProduct getItem() {
         return item;
     }
 
@@ -36,7 +37,4 @@ public class BuyEventEntry {
         return amount;
     }
 
-    public double getPrice() {
-        return price;
-    }
 }

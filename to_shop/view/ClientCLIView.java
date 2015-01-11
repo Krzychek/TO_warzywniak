@@ -1,9 +1,9 @@
 package to_shop.view;
 
 import to_shop.controller.ClientController;
-import to_shop.model.products.Product;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 class ClientCLIView extends CLIView {
     private final ClientController controller;
@@ -38,24 +38,22 @@ class ClientCLIView extends CLIView {
             new CLIView("What do you want to buy?") {
                 @Override
                 protected void setUpOptions() {
-                    for (Product item: controller.getAvailableProducts()) {
-                        optionList.add(new Option(
-                                item.getName() + " - " + controller.getPrice(item), () -> {
-                                    new CLIView("How much do you want to buy?") {
-                                        @Override
-                                        protected void processAnswer(int answer) {
-                                            if (controller.buy(item, answer))
-                                                System.out.println("Bought succesfully");
-                                            else {
-                                                System.out.println("Bought failed");
-                                            }
-                                            running = false;
+                    optionList.addAll(controller.getAvailableProducts().stream().map(item -> new Option(item.toString(),
+                            () -> {
+                                new CLIView("How much do you want to buy?") {
+                                    @Override
+                                    protected void processAnswer(String answer) {
+                                        if (controller.buy(item.getProduct(), Integer.parseInt(answer)))
+                                            System.out.println("Bought succesfully");
+                                        else {
+                                            System.out.println("Bought failed");
                                         }
-                                    }.run();
-                                    return false;
-                                }
-                        ));
-                    }
+                                        running = false;
+                                    }
+                                }.run();
+                                return false;
+                            }
+                    )).collect(Collectors.toList()));
                 }
             }.run();
             return true;
