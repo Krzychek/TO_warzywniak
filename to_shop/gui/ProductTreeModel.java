@@ -43,7 +43,8 @@ public class ProductTreeModel extends DefaultTreeModel {
                     categoryNode = new DefaultMutableTreeNode(item.getCategory());
                     categoryMap.put(item.getCategory(), categoryNode);
                     insertNodeInto(categoryNode, top, top.getChildCount());
-                    nodeStructureChanged(top);
+                    if (top.getChildCount() == 1)
+                        nodeStructureChanged(top);
                 }
                 insertNodeInto(itemNode, categoryNode, categoryNode.getChildCount());
 
