@@ -6,6 +6,7 @@ public class ROProductWrapper extends DetailedProduct {
     public ROProductWrapper(DetailedProduct detailedProduct) {
         this.detailedProduct = detailedProduct;
     }
+
     public ROProductWrapper(Product product, double price, int amount) {
         this.detailedProduct = new ProductWrapper(product.unPack(), price, amount);
     }
@@ -15,24 +16,50 @@ public class ROProductWrapper extends DetailedProduct {
     public Product unPack() {
         return detailedProduct.unPack();
     }
+
     @Override
-    public double getPrice() { return detailedProduct.getPrice(); }
+    public double getPrice() {
+        return detailedProduct.getPrice();
+    }
+
     @Override
-    public int getAmount() {return detailedProduct.getAmount(); }
+    public void setPrice(double price) {
+    }
+
     @Override
-    public boolean equals(Object obj) { return detailedProduct.equals(obj); }
+    public int getAmount() {
+        return detailedProduct.getAmount();
+    }
+
     @Override
-    public DetailedProduct clone() { return this; }
+    public void setAmount(int amount) {
+    }
+
     @Override
-    public String getCategory() { return detailedProduct.getCategory(); }
+    public boolean equals(Object obj) {
+        return detailedProduct.equals(obj);
+    }
+
     @Override
-    public String toString() { return detailedProduct.toString(); }
+    public DetailedProduct clone() {
+        return this;
+    }
+
     @Override
-    public void setDiscount(double discount) {}
+    public String getCategory() {
+        return detailedProduct.getCategory();
+    }
+
     @Override
-    public void addAmount(int amount) {}
+    public String toString() {
+        return detailedProduct.toString();
+    }
+
     @Override
-    public void setAmount(int amount) {}
+    public void setDiscount(double discount) {
+    }
+
     @Override
-    public void setPrice(double price) {}
+    public void addAmount(int amount) {
+    }
 }

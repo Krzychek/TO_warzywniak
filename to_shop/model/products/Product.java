@@ -4,64 +4,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Product implements Cloneable {
-	String name;
-	Product() {}
-	private boolean isRipe;
+    private static ArrayList<Product> availableList;
+    String name;
+    private boolean isRipe;
 
-	protected Product(String name) {
-		this.name = name;
-		isRipe = false;
-	}
+    Product() {
+    }
 
-	public void ripe() {
-		isRipe = true;
-	}
+    protected Product(String name) {
+        this.name = name;
+        isRipe = false;
+    }
 
-	public String toString() {
-		return (isRipe ? "ripe " : "unripe ") + name.toLowerCase();
-	}
+    public static List<Product> getAvailableList() {
+        if (availableList == null) {
+            availableList = new ArrayList<>();
+            availableList.add(new Apple(Apple.AppleType.FUJI));
+            availableList.add(new Apple(Apple.AppleType.BRAMEY));
+            availableList.add(new Banana(Banana.BananaType.YELLOW));
+            availableList.add(new Banana(Banana.BananaType.GREEN));
+            availableList.add(new Carrot(Carrot.CarrotType.YELLOW));
+            availableList.add(new Carrot(Carrot.CarrotType.GREEN));
+        }
+        return availableList;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof DetailedProduct)
-			return ((Product) obj).unPack().equals(this);
-		if (obj instanceof Product)
-			return ((Product) obj).toString().equals(this.toString());
-		return false;
-	}
+    public void ripe() {
+        isRipe = true;
+    }
 
-	@Override
-	public int hashCode() {
-		return toString().length();
-	}
+    public String toString() {
+        return (isRipe ? "ripe " : "unripe ") + name.toLowerCase();
+    }
 
-	@Override
-	public Product clone()  {
-		try {
-			return (Product) super.clone();
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof DetailedProduct)
+            return ((Product) obj).unPack().equals(this);
+        if (obj instanceof Product)
+            return ((Product) obj).toString().equals(this.toString());
+        return false;
+    }
 
-	public Product unPack() {
-		return this;
-	}
+    @Override
+    public int hashCode() {
+        return toString().length();
+    }
 
-	private static ArrayList<Product> availableList;
-	public static List<Product> getAvailableList() {
-		if (availableList == null) {
-			availableList = new ArrayList<>();
-			availableList.add(new Apple(Apple.AppleType.FUJI));
-			availableList.add(new Apple(Apple.AppleType.BRAMEY));
-			availableList.add(new Banana(Banana.BananaType.YELLOW));
-			availableList.add(new Banana(Banana.BananaType.GREEN));
-			availableList.add(new Carrot(Carrot.CarrotType.YELLOW));
-			availableList.add(new Carrot(Carrot.CarrotType.GREEN));
-		}
-		return availableList;
-	}
+    @Override
+    public Product clone() {
+        try {
+            return (Product) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-	public abstract String getCategory();
+    public Product unPack() {
+        return this;
+    }
+
+    public abstract String getCategory();
 }
