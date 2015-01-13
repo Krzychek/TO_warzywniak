@@ -14,5 +14,5 @@ public interface ProductContainer {
 
 	public <T> Collection<DetailedProduct> getProductCollection(Class<T> clazz);
 
-	public boolean rmProduct(Product item, int amount);
+	public void rmProduct(Product item);
 }

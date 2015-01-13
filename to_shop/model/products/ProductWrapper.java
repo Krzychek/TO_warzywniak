@@ -29,8 +29,6 @@ public class ProductWrapper extends DetailedProduct  {
     @Override
     public void setAmount(int amount) { this.amount = amount; }
     @Override
-    public Product getProduct() { return product; }
-    @Override
     public double getPrice() { return price; }
 
     @Override
@@ -41,7 +39,7 @@ public class ProductWrapper extends DetailedProduct  {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof DetailedProduct)
-            if (product.equals(((DetailedProduct) obj).getProduct())
+            if (product.equals(((DetailedProduct) obj).unPack())
                 && price == ((DetailedProduct) obj).getPrice()
                 && amount == ((DetailedProduct) obj).getAmount()) {
               return true;
@@ -62,6 +60,11 @@ public class ProductWrapper extends DetailedProduct  {
     @Override
     public String getCategory() {
         return product.getCategory();
+    }
+
+    @Override
+    public Product unPack() {
+        return product.unPack();
     }
 
     @Override

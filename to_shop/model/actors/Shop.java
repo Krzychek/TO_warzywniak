@@ -41,11 +41,11 @@ public class Shop extends Observable {
 	}
 
 	public boolean sellProduct(Product item, int amount, Client client) {
-		if(container.rmProduct(item, amount)) {
-			setChanged();
-			notifyObservers(new SellEvent(client, item, getPrice(item), amount));
-			return true;
-		}
+//		if(container.rmProduct(item, amount)) {
+//			setChanged();
+//			notifyObservers(new SellEvent(client, item, getPrice(item), amount));
+//			return true;
+//		} TODO: implement
 		return false;
 	}
 
@@ -79,5 +79,9 @@ public class Shop extends Observable {
 
 	public void addProduct(Product product) {
 		container.addProduct(product);
+	}
+
+	public void rmProduct(Product product) {
+		container.rmProduct(product);
 	}
 }

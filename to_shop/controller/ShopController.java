@@ -13,7 +13,7 @@ public class ShopController {
     }
 
     public void addProduct(Product item, int amount, double price) {
-        shop.addProduct(item,amount,price);
+        shop.addProduct(item, amount, price);
     }
 
     public void addAmount(Product item, int amount) {
@@ -35,5 +35,9 @@ public class ShopController {
 
     public void addProduct(Product product) {
         shop.addProduct(product);
+    }
+
+    public void rmProduct(Product product) {
+        shop.rmProduct(product);
     }
 }

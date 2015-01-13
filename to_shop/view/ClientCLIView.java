@@ -43,7 +43,7 @@ class ClientCLIView extends CLIView {
                                 new CLIView("How much do you want to buy?") {
                                     @Override
                                     protected void processAnswer(String answer) {
-                                        if (controller.buy(item.getProduct(), Integer.parseInt(answer)))
+                                        if (controller.buy(item.unPack(), Integer.parseInt(answer)))
                                             System.out.println("Bought succesfully");
                                         else {
                                             System.out.println("Bought failed");

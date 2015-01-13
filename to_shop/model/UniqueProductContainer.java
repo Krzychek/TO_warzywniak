@@ -28,15 +28,8 @@ public class UniqueProductContainer implements ProductContainer {
 	}
 
 	@Override
-	public boolean rmProduct(Product item, int amount) {
-		DetailedProduct detailedProduct = productList.get(item);
-		if (detailedProduct != null) {
-			if (detailedProduct.getAmount() >= amount) {
-				detailedProduct.addAmount(-amount);
-				return true;
-			}
-		}
-		return false;
+	public void rmProduct(Product item) {
+		productList.remove(item.unPack());
 	}
 	
 	@Override

@@ -10,12 +10,15 @@ public class ROProductWrapper extends DetailedProduct {
         this.detailedProduct = new ProductWrapper(product.unPack(), price, amount);
     }
 
+
     @Override
-    public Product getProduct() { return detailedProduct.getProduct();}
+    public Product unPack() {
+        return detailedProduct.unPack();
+    }
     @Override
     public double getPrice() { return detailedProduct.getPrice(); }
     @Override
-    public int getAmount() { return detailedProduct.getAmount(); }
+    public int getAmount() {return detailedProduct.getAmount(); }
     @Override
     public boolean equals(Object obj) { return detailedProduct.equals(obj); }
     @Override

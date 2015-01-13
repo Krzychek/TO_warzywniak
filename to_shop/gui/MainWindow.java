@@ -79,6 +79,17 @@ public class MainWindow {
                 }
             }
         });
+        shop_rm.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Object obj = ((DefaultMutableTreeNode) shop_in_tree.getSelectionModel()
+                        .getSelectionPath().getLastPathComponent()).getUserObject();
+                if (obj instanceof Product) {
+                    shopController.rmProduct((Product) obj);
+                    refreshShop();
+                }
+            }
+        });
     }
 
     public void refreshClient() {
@@ -86,15 +97,12 @@ public class MainWindow {
         ((ProductTreeModel) client_available_tree.getModel()) .update((Collection) clientController.getAvailableProducts());
 
     }
-
     public void refreshShop() {
         ((ProductTreeModel) shop_in_tree.getModel()) .update((Collection) shopController.getProductCollection());
         ((ProductTreeModel) shop_available_tree.getModel()) .update(Product.getAvailableList().stream()
                 .filter((item) -> !shopController.getProductCollection().contains(item))
                 .collect(Collectors.toList()));
     }
-
-
     public void refreshHistory() {
         historyList.setListData(EventHistory.getInstance().getHistoryArray());
     }

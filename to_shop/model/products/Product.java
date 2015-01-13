@@ -46,9 +46,6 @@ public abstract class Product implements Cloneable {
 	}
 
 	public Product unPack() {
-		if (this instanceof DetailedProduct) {
-			return ((DetailedProduct) this).getProduct().unPack();
-		}
 		return this;
 	}
 
