@@ -14,9 +14,9 @@ public class UniqueProductContainer implements ProductContainer {
 
 	@Override
 	public void addProduct(Product item) {
-		if (!productList.containsKey(item)) {
+		if (!productList.containsKey(item.unPack())) {
 			if (item instanceof DetailedProduct)
-				productList.put( ((DetailedProduct) item).getProduct(), (DetailedProduct) item);
+				productList.put(item.unPack(), (DetailedProduct) item);
 			else
 				productList.put(item, new ProductWrapper(item));
 		}

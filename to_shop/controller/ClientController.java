@@ -1,6 +1,7 @@
 package to_shop.controller;
 
 import to_shop.model.actors.Client;
+import to_shop.model.actors.MainShop;
 import to_shop.model.actors.Shop;
 import to_shop.model.products.DetailedProduct;
 import to_shop.model.products.Product;
@@ -12,6 +13,9 @@ import java.util.Map;
 public class ClientController {
     private Shop shop;
     private Client client;
+    public ClientController(Client client) {
+        this(client, MainShop.getInstance());
+    }
     public ClientController(Client client, Shop shop) {
         this.client = client;
         this.shop = shop;

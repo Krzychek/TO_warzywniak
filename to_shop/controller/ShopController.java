@@ -12,16 +12,12 @@ public class ShopController {
         this.shop = MainShop.getInstance();
     }
 
-    public void setPrice(Product item, double price) {
-        shop.setPrice(item, price);
-    }
-
-    public double getPrice(Product item) {
-        return shop.getPrice(item);
-    }
-
     public void addProduct(Product item, int amount, double price) {
         shop.addProduct(item,amount,price);
+    }
+
+    public void addAmount(Product item, int amount) {
+        shop.getDetailedProduct(item).addAmount(amount);
     }
 
     public Collection<DetailedProduct> getProductCollection() {
@@ -34,5 +30,10 @@ public class ShopController {
         shop.addProduct(new Apple(Apple.AppleType.FUJI), 40, 0.40);
         shop.addProduct(new Banana(Banana.BananaType.YELLOW), 10, 1.0);
         shop.addProduct(new Carrot(Carrot.CarrotType.GREEN), 5, 0.2);
+        shop.addProduct(new Carrot(Carrot.CarrotType.YELLOW), 5, 0.2);
+    }
+
+    public void addProduct(Product product) {
+        shop.addProduct(product);
     }
 }

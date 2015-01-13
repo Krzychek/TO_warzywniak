@@ -34,20 +34,17 @@ public class ProductWrapper extends DetailedProduct  {
     public double getPrice() { return price; }
 
     @Override
-    public String getName() { return product.getName(); }
-
-    @Override
     public void setDiscount(double discount) {
         this.discount = discount;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof DetailedProduct
-                && product.equals(((DetailedProduct) obj).getProduct())
+        if (obj instanceof DetailedProduct)
+            if (product.equals(((DetailedProduct) obj).getProduct())
                 && price == ((DetailedProduct) obj).getPrice()
                 && amount == ((DetailedProduct) obj).getAmount()) {
-            return true;
+              return true;
         } else if (obj instanceof Product)
             return product.equals(obj);
         return false;
@@ -63,5 +60,10 @@ public class ProductWrapper extends DetailedProduct  {
     }
 
     @Override
-    public String toString() { return product.getName() + " - " + price + " x " + amount; }
+    public String getCategory() {
+        return product.getCategory();
+    }
+
+    @Override
+    public String toString() { return product.toString() + " - " + price + " x " + amount; }
 }

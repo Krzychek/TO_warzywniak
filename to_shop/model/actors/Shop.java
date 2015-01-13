@@ -76,4 +76,8 @@ public class Shop extends Observable {
 	public double getPrice(Product item) {
 		return getDetailedProduct(item).getPrice();
 	}
+
+	public void addProduct(Product product) {
+		container.addProduct(product);
+	}
 }

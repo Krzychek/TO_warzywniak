@@ -17,11 +17,11 @@ public class ROProductWrapper extends DetailedProduct {
     @Override
     public int getAmount() { return detailedProduct.getAmount(); }
     @Override
-    public String getName() { return detailedProduct.getName(); }
-    @Override
     public boolean equals(Object obj) { return detailedProduct.equals(obj); }
     @Override
     public DetailedProduct clone() { return this; }
+    @Override
+    public String getCategory() { return detailedProduct.getCategory(); }
     @Override
     public String toString() { return detailedProduct.toString(); }
     @Override

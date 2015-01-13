@@ -10,8 +10,6 @@ public abstract class DetailedProduct extends Product {
     public abstract void setDiscount(double discount);
 
     @Override
-    public abstract String getName();
-    @Override
     public abstract boolean equals(Object obj);
     @Override
     public abstract DetailedProduct clone();
