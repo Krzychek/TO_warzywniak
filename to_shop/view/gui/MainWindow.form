@@ -147,7 +147,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="5c98d" class="javax.swing.JButton" binding="kupButton" default-binding="true">
+                  <component id="5c98d" class="javax.swing.JButton" binding="byuBtn" default-binding="true">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -155,7 +155,7 @@
                       <text value="Kup"/>
                     </properties>
                   </component>
-                  <component id="33362" class="javax.swing.JFormattedTextField" binding="textField1" default-binding="true">
+                  <component id="33362" class="javax.swing.JFormattedTextField" binding="clientAmountField" default-binding="true">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>

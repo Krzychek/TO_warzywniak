@@ -4,14 +4,18 @@ import to_shop.controller.ClientController;
 import to_shop.controller.ShopController;
 import to_shop.model.actors.Client;
 import to_shop.model.actors.EventHistory;
+import to_shop.model.actors.Shop;
 import to_shop.model.products.Product;
 
 import javax.swing.*;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.NumberFormatter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.NumberFormat;
 import java.util.Collection;
 
 public class MainWindow {
@@ -23,8 +27,8 @@ public class MainWindow {
     private JTree shop_available_tree;
     private JButton shop_add;
     private JButton shop_rm;
-    private JButton kupButton;
-    private JFormattedTextField textField1;
+    private JButton byuBtn;
+    private JFormattedTextField clientAmountField;
     private JTree client_available_tree;
     private JTree client_owned_tree;
     private JList historyList;
@@ -35,12 +39,12 @@ public class MainWindow {
     public MainWindow(ClientController clientController, ShopController shopController) {
         this.clientController = clientController;
         this.shopController = shopController;
-        initializeListeners();
 
+        clientAmountField.setFormatterFactory(new DefaultFormatterFactory(new NumberFormatter(NumberFormat.getIntegerInstance())));
+        initializeListeners();
         client_available_tree.setModel(new ProductTreeModel());
         client_owned_tree.setModel(new ProductTreeModel());
         shop_available_tree.setModel(new ProductTreeModel());
-        shop_available_tree.updateUI();
         shop_in_tree.setModel(new ProductTreeModel());
         refreshShop();
         refreshClient();
@@ -93,6 +97,23 @@ public class MainWindow {
                 if (obj instanceof Product) {
                     shopController.rmProduct((Product) obj);
                     refreshShop();
+                }
+            }
+        });
+        byuBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Object obj = ((DefaultMutableTreeNode) client_available_tree.getSelectionModel()
+                        .getSelectionPath().getLastPathComponent()).getUserObject();
+                if (obj instanceof Product) {
+                    try {
+                        clientController.buy((Product) obj, Integer.parseInt(clientAmountField.getText()));
+                    } catch (Client.NotEnoughMoneyException e1) {
+                        // TODO check
+                    } catch (Shop.NotEnoughAmountException e1) {
+                        // TODO check
+                    }
+                    refreshClient();
                 }
             }
         });
