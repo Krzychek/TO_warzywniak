@@ -1,4 +1,4 @@
-package to_shop.view;
+package to_shop.view.cli;
 
 import to_shop.controller.MainController;
 

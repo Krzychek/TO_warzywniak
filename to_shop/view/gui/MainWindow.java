@@ -1,4 +1,4 @@
-package to_shop.gui;
+package to_shop.view.gui;
 
 import to_shop.controller.ClientController;
 import to_shop.controller.ShopController;

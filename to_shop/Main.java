@@ -5,8 +5,8 @@ import to_shop.controller.MainController;
 import to_shop.controller.ShopController;
 import to_shop.model.actors.Client;
 import to_shop.model.actors.MainShop;
-import to_shop.view.CLIView;
-import to_shop.view.MainCLIView;
+import to_shop.view.cli.CLIView;
+import to_shop.view.cli.MainCLIView;
 
 /**
  * Created by krzysiek on 14.12.14.
