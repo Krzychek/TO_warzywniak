@@ -13,7 +13,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 public class MainWindow {
     private final ClientController clientController;
@@ -48,6 +47,13 @@ public class MainWindow {
         refreshHistory();
     }
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("MainWindow");
+        frame.setContentPane(new MainWindow(new ClientController(new Client(200)), new ShopController()).panel1);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
 
     private void initializeListeners() {
         clientPanel.addComponentListener(new ComponentAdapter() {
@@ -93,26 +99,17 @@ public class MainWindow {
     }
 
     public void refreshClient() {
-        ((ProductTreeModel) client_owned_tree.getModel()) .update((Collection) clientController.getProductCollection());
-        ((ProductTreeModel) client_available_tree.getModel()) .update((Collection) clientController.getAvailableProducts());
+        ((ProductTreeModel) client_owned_tree.getModel()).update((Collection) clientController.getProductCollection());
+        ((ProductTreeModel) client_available_tree.getModel()).update((Collection) clientController.getAvailableProducts());
 
     }
+
     public void refreshShop() {
-        ((ProductTreeModel) shop_in_tree.getModel()) .update((Collection) shopController.getProductCollection());
-        ((ProductTreeModel) shop_available_tree.getModel()) .update(Product.getAvailableList().stream()
-                .filter((item) -> !shopController.getProductCollection().contains(item))
-                .collect(Collectors.toList()));
+        ((ProductTreeModel) shop_in_tree.getModel()).update((Collection) shopController.getProductCollection());
+        ((ProductTreeModel) shop_available_tree.getModel()).update(shopController.getAvailableProducts());
     }
+
     public void refreshHistory() {
         historyList.setListData(EventHistory.getInstance().getHistoryArray());
-    }
-
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("MainWindow");
-        frame.setContentPane(new MainWindow(new ClientController(new Client(200)),new ShopController()).panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
     }
 }

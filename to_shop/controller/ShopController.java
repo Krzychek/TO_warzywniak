@@ -5,6 +5,8 @@ import to_shop.model.actors.Shop;
 import to_shop.model.products.*;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShopController {
     private Shop shop;
@@ -39,5 +41,10 @@ public class ShopController {
 
     public void rmProduct(Product product) {
         shop.rmProduct(product);
+    }
+
+    public List<Product> getAvailableProducts() {
+        return Product.getAvailableList().stream().filter((item) -> !shop.getProductCollection().contains(item))
+                .collect(Collectors.toList());
     }
 }
