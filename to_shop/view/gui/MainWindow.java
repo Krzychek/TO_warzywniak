@@ -23,17 +23,17 @@ public class MainWindow {
     private final ShopController shopController;
     private JTabbedPane tabbedPane1;
     private JPanel panel1;
-    private JTree shop_in_tree;
-    private JTree shop_available_tree;
-    private JButton shop_add;
-    private JButton shop_rm;
-    private JButton byuBtn;
-    private JFormattedTextField clientAmountField;
-    private JTree client_available_tree;
-    private JTree client_owned_tree;
-    private JList historyList;
     private JPanel shopPanel;
+    private JTree shopInTree;
+    private JTree shopAvailableTree;
+    private JButton shopAddBtn;
+    private JButton shopRmBtn;
     private JPanel clientPanel;
+    private JTree clientAvailableTree;
+    private JTree clientOwnedTree;
+    private JButton clientBuyBtn;
+    private JFormattedTextField clientAmountField;
+    private JList historyList;
     private JPanel historyPanel;
 
     public MainWindow(ClientController clientController, ShopController shopController) {
@@ -42,10 +42,10 @@ public class MainWindow {
 
         clientAmountField.setFormatterFactory(new DefaultFormatterFactory(new NumberFormatter(NumberFormat.getIntegerInstance())));
         initializeListeners();
-        client_available_tree.setModel(new ProductTreeModel());
-        client_owned_tree.setModel(new ProductTreeModel());
-        shop_available_tree.setModel(new ProductTreeModel());
-        shop_in_tree.setModel(new ProductTreeModel());
+        clientAvailableTree.setModel(new ProductTreeModel());
+        clientOwnedTree.setModel(new ProductTreeModel());
+        shopAvailableTree.setModel(new ProductTreeModel());
+        shopInTree.setModel(new ProductTreeModel());
         refreshShop();
         refreshClient();
         refreshHistory();
@@ -78,10 +78,10 @@ public class MainWindow {
                 refreshHistory();
             }
         });
-        shop_add.addMouseListener(new MouseAdapter() {
+        shopAddBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Object obj = ((DefaultMutableTreeNode) shop_available_tree.getSelectionModel()
+                Object obj = ((DefaultMutableTreeNode) shopAvailableTree.getSelectionModel()
                         .getSelectionPath().getLastPathComponent()).getUserObject();
                 if (obj instanceof Product) {
                     shopController.addProduct((Product) obj);
@@ -89,10 +89,10 @@ public class MainWindow {
                 }
             }
         });
-        shop_rm.addMouseListener(new MouseAdapter() {
+        shopRmBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Object obj = ((DefaultMutableTreeNode) shop_in_tree.getSelectionModel()
+                Object obj = ((DefaultMutableTreeNode) shopInTree.getSelectionModel()
                         .getSelectionPath().getLastPathComponent()).getUserObject();
                 if (obj instanceof Product) {
                     shopController.rmProduct((Product) obj);
@@ -100,10 +100,10 @@ public class MainWindow {
                 }
             }
         });
-        byuBtn.addMouseListener(new MouseAdapter() {
+        clientBuyBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Object obj = ((DefaultMutableTreeNode) client_available_tree.getSelectionModel()
+                Object obj = ((DefaultMutableTreeNode) clientAvailableTree.getSelectionModel()
                         .getSelectionPath().getLastPathComponent()).getUserObject();
                 if (obj instanceof Product) {
                     try {
@@ -120,14 +120,14 @@ public class MainWindow {
     }
 
     public void refreshClient() {
-        ((ProductTreeModel) client_owned_tree.getModel()).update((Collection) clientController.getProductCollection());
-        ((ProductTreeModel) client_available_tree.getModel()).update((Collection) clientController.getAvailableProducts());
+        ((ProductTreeModel) clientOwnedTree.getModel()).update((Collection) clientController.getProductCollection());
+        ((ProductTreeModel) clientAvailableTree.getModel()).update((Collection) clientController.getAvailableProducts());
 
     }
 
     public void refreshShop() {
-        ((ProductTreeModel) shop_in_tree.getModel()).update((Collection) shopController.getProductCollection());
-        ((ProductTreeModel) shop_available_tree.getModel()).update(shopController.getAvailableProducts());
+        ((ProductTreeModel) shopInTree.getModel()).update((Collection) shopController.getProductCollection());
+        ((ProductTreeModel) shopAvailableTree.getModel()).update(shopController.getAvailableProducts());
     }
 
     public void refreshHistory() {

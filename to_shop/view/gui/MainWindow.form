@@ -35,7 +35,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="cefe8" class="javax.swing.JButton" binding="shop_add">
+                  <component id="cefe8" class="javax.swing.JButton" binding="shopAddBtn">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -43,7 +43,7 @@
                       <text value="&lt;"/>
                     </properties>
                   </component>
-                  <component id="57c8e" class="javax.swing.JButton" binding="shop_rm">
+                  <component id="57c8e" class="javax.swing.JButton" binding="shopRmBtn">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -60,7 +60,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="ca14" class="javax.swing.JTree" binding="shop_in_tree">
+                  <component id="ca14" class="javax.swing.JTree" binding="shopInTree">
                     <constraints/>
                     <properties>
                       <rootVisible value="false"/>
@@ -75,7 +75,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="d5f2b" class="javax.swing.JTree" binding="shop_available_tree">
+                  <component id="d5f2b" class="javax.swing.JTree" binding="shopAvailableTree">
                     <constraints/>
                     <properties>
                       <rootVisible value="false"/>
@@ -116,7 +116,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="ed108" class="javax.swing.JTree" binding="client_available_tree">
+                  <component id="ed108" class="javax.swing.JTree" binding="clientAvailableTree">
                     <constraints/>
                     <properties>
                       <rootVisible value="false"/>
@@ -131,7 +131,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="bca0a" class="javax.swing.JTree" binding="client_owned_tree">
+                  <component id="bca0a" class="javax.swing.JTree" binding="clientOwnedTree">
                     <constraints/>
                     <properties>
                       <rootVisible value="false"/>
@@ -147,7 +147,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="5c98d" class="javax.swing.JButton" binding="byuBtn" default-binding="true">
+                  <component id="5c98d" class="javax.swing.JButton" binding="clientBuyBtn" default-binding="true">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
