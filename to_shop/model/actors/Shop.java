@@ -2,7 +2,6 @@ package to_shop.model.actors;
 
 import to_shop.model.ProductContainer;
 import to_shop.model.UniqueProductContainer;
-import to_shop.model.actors.events.SellEvent;
 import to_shop.model.products.DetailedProduct;
 import to_shop.model.products.Product;
 import to_shop.model.products.ProductWrapper;
@@ -13,10 +12,14 @@ import java.util.List;
 import java.util.Observable;
 
 public class Shop extends Observable {
-	private List<SellEvent> historyList = new ArrayList<>();
 	private List<Shop> shopList = new ArrayList<>();
 	private ProductContainer container;
 	private List<DetailedProduct> discountList;
+	public static class NotEnoughAmountException extends Exception {
+		public NotEnoughAmountException(int exp, int was) {
+			super("expected: " + exp +"; was: " + was);
+		}
+	}
 
 	public Shop() {
 		this(new UniqueProductContainer());
@@ -40,13 +43,13 @@ public class Shop extends Observable {
 		container.addProduct(detailedProduct);
 	}
 
-	public boolean sellProduct(Product item, int amount, Client client) {
-//		if(container.rmProduct(item, amount)) {
-//			setChanged();
-//			notifyObservers(new SellEvent(client, item, getPrice(item), amount));
-//			return true;
-//		} TODO: implement
-		return false;
+	public Product sellProduct(Product item, int amount, Client client) throws NotEnoughAmountException, Client.NotEnoughMoneyException {
+		DetailedProduct product = getDetailedProduct(item);
+		if (amount > product.getAmount())
+			throw new NotEnoughAmountException(amount, product.getAmount());
+		client.takeMoney(amount * product.getPrice());
+		product.addAmount(-amount);
+		return item;
 	}
 
 	public void addProductToDiscountList(Product item) {

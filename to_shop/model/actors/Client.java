@@ -10,35 +10,44 @@ import java.util.Collection;
 import java.util.Observable;
 
 public class Client extends Observable {
-	private ProductContainer container;
+    private ProductContainer container;
+    private double money = 0;
 
-	public Client() { this(200); }
-	public Client(double money) {
-		container = new UniqueProductContainer();
-		this.money = money;
-		addObserver(EventHistory.getInstance());
-	}
+    public Client() {
+        this(200);
+    }
 
-	public double getMoney() {
-		return money;
-	}
+    public Client(double money) {
+        container = new UniqueProductContainer();
+        this.money = money;
+        addObserver(EventHistory.getInstance());
+    }
 
-	private double money = 0;
+    public void takeMoney(double price) throws NotEnoughMoneyException {
+        if (money - price < 0)
+            throw new NotEnoughMoneyException(money, price);
+        money -= price;
 
+    }
 
-	public boolean buy(Shop shop, Product item, int amount) {
-		if (money >= amount * shop.getPrice(item) && shop.sellProduct(item, amount, this)) {
-			container.addProduct(item);
-			money -= amount * shop.getPrice(item);
-			setChanged();
-			notifyObservers(new BuyEvent(shop, item, shop.getPrice(item), amount));
-			return true;
-		}
-		return false;
-	}
+    public double getMoney() {
+        return money;
+    }
 
-	public Collection<DetailedProduct> getProductCollection() {
-		return container.getProductCollection();
-	}
+    public void buy(Shop shop, Product item, int amount) throws Shop.NotEnoughAmountException, NotEnoughMoneyException {
+        container.addProduct(shop.sellProduct(item, amount, this));
+        setChanged();
+        notifyObservers(new BuyEvent(shop, item, shop.getPrice(item), amount));
+    }
+
+    public Collection<DetailedProduct> getProductCollection() {
+        return container.getProductCollection();
+    }
+
+    public static class NotEnoughMoneyException extends Exception {
+        public NotEnoughMoneyException(double exp, double was) {
+            super("expected: " + exp + "; was: " + was);
+        }
+    }
 
 }

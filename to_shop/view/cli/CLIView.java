@@ -60,7 +60,7 @@ abstract public class CLIView implements Runnable {
                 str.append(optionList.get(i));
                 str.append("\n");
             }
-            str.append("Action: ");
+            str.append("Akcja: ");
             System.out.print(str.toString());
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             try {

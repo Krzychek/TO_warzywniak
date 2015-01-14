@@ -21,8 +21,8 @@ public class ClientController {
         this.shop = shop;
     }
 
-    public boolean buy(Product item, int amount) {
-        return client.buy(shop,item,amount);
+    public void buy(Product item, int amount) throws Client.NotEnoughMoneyException, Shop.NotEnoughAmountException {
+        client.buy(shop,item,amount);
     }
 
     public Collection<DetailedProduct> getProductCollection() {
