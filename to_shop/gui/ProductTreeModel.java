@@ -19,7 +19,7 @@ public class ProductTreeModel extends DefaultTreeModel {
         top = (DefaultMutableTreeNode) root;
     }
 
-    public synchronized void update(Collection<Product> data) {
+    public void update(Collection<Product> data) {
         List<Product> toRemove = new ArrayList<>();
         productMap.keySet().forEach((key -> {
             if (!data.contains(key))

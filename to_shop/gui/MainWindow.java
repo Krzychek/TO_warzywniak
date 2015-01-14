@@ -49,7 +49,7 @@ public class MainWindow {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("MainWindow");
-        frame.setContentPane(new MainWindow(new ClientController(new Client(200)), new ShopController()).panel1);
+        frame.setContentPane(new MainWindow(new ClientController(new Client()), new ShopController()).panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

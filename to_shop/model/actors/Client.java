@@ -12,6 +12,7 @@ import java.util.Observable;
 public class Client extends Observable {
 	private ProductContainer container;
 
+	public Client() { this(200); }
 	public Client(double money) {
 		container = new UniqueProductContainer();
 		this.money = money;
