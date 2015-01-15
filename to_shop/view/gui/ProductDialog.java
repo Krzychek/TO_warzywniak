@@ -24,8 +24,8 @@ public class ProductDialog extends JDialog {
         buttonOK.addActionListener(e -> onOK());
         buttonCancel.addActionListener(e -> onCancel());
         productName.setText(product.unPack().toString());
-        amount.setModel(new SpinnerNumberModel(product.getAmount(),0, Integer.MAX_VALUE, 1));
-        price.setModel(new SpinnerNumberModel(product.getPrice(),0, Double.POSITIVE_INFINITY, 0.01));
+        amount.setModel(new SpinnerNumberModel(product.getAmount(), 0, Integer.MAX_VALUE, 1));
+        price.setModel(new SpinnerNumberModel(product.getPrice(), 0, Double.POSITIVE_INFINITY, 0.01));
 
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -36,6 +36,8 @@ public class ProductDialog extends JDialog {
     }
 
     private void onOK() {
+        product.setPrice((double) price.getValue());
+        product.setAmount((int) amount.getValue());
         dispose();
     }
 
