@@ -40,10 +40,4 @@ public class ProductDialog extends JDialog {
         dispose();
     }
 
-//    public static void main(String[] args) {
-//        ProductDialog dialog = new ProductDialog(product);
-//        dialog.pack();
-//        dialog.setVisible(true);
-//        System.exit(0);
-//    }
 }

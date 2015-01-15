@@ -5,6 +5,7 @@ import to_shop.controller.ShopController;
 import to_shop.model.actors.Client;
 import to_shop.model.actors.EventHistory;
 import to_shop.model.actors.Shop;
+import to_shop.model.products.DetailedProduct;
 import to_shop.model.products.Product;
 
 import javax.swing.*;
@@ -72,49 +73,54 @@ public class MainWindow {
                 refreshShop();
             }
         });
+        shopInTree.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    Object obj = ((DefaultMutableTreeNode) shopInTree.getSelectionModel()
+                            .getSelectionPath().getLastPathComponent()).getUserObject();
+                    if (obj instanceof DetailedProduct) {
+                        ProductDialog dialog = new ProductDialog((DetailedProduct) obj);
+                        dialog.pack();
+                        dialog.setVisible(true);
+                    }
+                }
+            }
+        });
         historyPanel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 refreshHistory();
             }
         });
-        shopAddBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Object obj = ((DefaultMutableTreeNode) shopAvailableTree.getSelectionModel()
-                        .getSelectionPath().getLastPathComponent()).getUserObject();
-                if (obj instanceof Product) {
-                    shopController.addProduct((Product) obj);
-                    refreshShop();
-                }
+        shopAddBtn.addActionListener(e -> {
+            Object obj = ((DefaultMutableTreeNode) shopAvailableTree.getSelectionModel()
+                    .getSelectionPath().getLastPathComponent()).getUserObject();
+            if (obj instanceof Product) {
+                shopController.addProduct((Product) obj);
+                refreshShop();
             }
         });
-        shopRmBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Object obj = ((DefaultMutableTreeNode) shopInTree.getSelectionModel()
-                        .getSelectionPath().getLastPathComponent()).getUserObject();
-                if (obj instanceof Product) {
-                    shopController.rmProduct((Product) obj);
-                    refreshShop();
-                }
+        shopRmBtn.addActionListener(e -> {
+            Object obj = ((DefaultMutableTreeNode) shopInTree.getSelectionModel()
+                    .getSelectionPath().getLastPathComponent()).getUserObject();
+            if (obj instanceof Product) {
+                shopController.rmProduct((Product) obj);
+                refreshShop();
             }
         });
-        clientBuyBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Object obj = ((DefaultMutableTreeNode) clientAvailableTree.getSelectionModel()
-                        .getSelectionPath().getLastPathComponent()).getUserObject();
-                if (obj instanceof Product) {
-                    try {
-                        clientController.buy((Product) obj, Integer.parseInt(clientAmountField.getText()));
-                    } catch (Client.NotEnoughMoneyException e1) {
-                        JOptionPane.showMessageDialog(panel1, "Nie ma tyle artykułów na stanie.");
-                    } catch (Shop.NotEnoughAmountException e1) {
-                        JOptionPane.showMessageDialog(panel1, "Nie masz wystarczająco dużo pieniędzy.");
-                    }
-                    refreshClient();
+        clientBuyBtn.addActionListener(e -> {
+            Object obj = ((DefaultMutableTreeNode) clientAvailableTree.getSelectionModel()
+                    .getSelectionPath().getLastPathComponent()).getUserObject();
+            if (obj instanceof Product) {
+                try {
+                    clientController.buy((Product) obj, Integer.parseInt(clientAmountField.getText()));
+                } catch (Client.NotEnoughMoneyException e1) {
+                    JOptionPane.showMessageDialog(panel1, "Nie ma tyle artykułów na stanie.");
+                } catch (Shop.NotEnoughAmountException e1) {
+                    JOptionPane.showMessageDialog(panel1, "Nie masz wystarczająco dużo pieniędzy.");
                 }
+                refreshClient();
             }
         });
     }
