@@ -32,10 +32,6 @@ public class Shop extends Observable {
 		discountList = new ArrayList<>();
 	}
 	
-	public void setPrice(Product item, double price) {
-		container.getDetailedProduct(item).setPrice(price);
-	}
-	
 	public void addProduct(Product item, int amount, double price) {
 		DetailedProduct detailedProduct = new ProductWrapper(item);
 		detailedProduct.setPrice(price);
