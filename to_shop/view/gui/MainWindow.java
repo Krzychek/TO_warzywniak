@@ -109,9 +109,9 @@ public class MainWindow {
                     try {
                         clientController.buy((Product) obj, Integer.parseInt(clientAmountField.getText()));
                     } catch (Client.NotEnoughMoneyException e1) {
-                        // TODO check
+                        JOptionPane.showMessageDialog(panel1, "Nie ma tyle artykułów na stanie.");
                     } catch (Shop.NotEnoughAmountException e1) {
-                        // TODO check
+                        JOptionPane.showMessageDialog(panel1, "Nie masz wystarczająco dużo pieniędzy.");
                     }
                     refreshClient();
                 }

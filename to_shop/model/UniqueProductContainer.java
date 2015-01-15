@@ -24,7 +24,7 @@ public class UniqueProductContainer implements ProductContainer {
 
 	@Override
 	public DetailedProduct getDetailedProduct(Product item) {
-		return productList.get(item);
+		return productList.get(item.unPack());
 	}
 
 	@Override
