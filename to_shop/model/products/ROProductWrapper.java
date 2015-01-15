@@ -41,6 +41,11 @@ public class ROProductWrapper extends DetailedProduct {
     }
 
     @Override
+    public boolean isRipe() {
+        return detailedProduct.isRipe();
+    }
+
+    @Override
     public DetailedProduct clone() {
         return this;
     }
@@ -61,5 +66,10 @@ public class ROProductWrapper extends DetailedProduct {
 
     @Override
     public void addAmount(int amount) {
+    }
+
+    @Override
+    public void ripe() {
+        detailedProduct.ripe();
     }
 }

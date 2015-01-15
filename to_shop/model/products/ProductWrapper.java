@@ -39,6 +39,11 @@ public class ProductWrapper extends DetailedProduct {
     }
 
     @Override
+    public void ripe() {
+        product.ripe();
+    }
+
+    @Override
     public double getPrice() {
         return price;
     }
@@ -63,6 +68,11 @@ public class ProductWrapper extends DetailedProduct {
             } else if (obj instanceof Product)
                 return product.equals(obj);
         return false;
+    }
+
+    @Override
+    public boolean isRipe() {
+        return product.isRipe();
     }
 
     @Override

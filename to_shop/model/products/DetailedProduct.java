@@ -7,6 +7,9 @@ public abstract class DetailedProduct extends Product {
 
     public abstract void addAmount(int amount);
 
+    @Override
+    public abstract void ripe();
+
     public abstract double getPrice();
 
     public abstract void setPrice(double price);
@@ -15,6 +18,9 @@ public abstract class DetailedProduct extends Product {
 
     @Override
     public abstract boolean equals(Object obj);
+
+    @Override
+    public abstract boolean isRipe();
 
     @Override
     public abstract DetailedProduct clone();

@@ -33,6 +33,10 @@ public abstract class Product implements Cloneable {
         isRipe = true;
     }
 
+    public boolean isRipe() {
+        return isRipe;
+    }
+
     public String toString() {
         return (isRipe ? "ripe " : "unripe ") + name.toLowerCase();
     }
