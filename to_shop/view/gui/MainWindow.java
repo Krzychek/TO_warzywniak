@@ -61,12 +61,28 @@ public class MainWindow {
     }
 
     private void initializeListeners() {
+        // client panel
         clientPanel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 refreshClient();
             }
         });
+        clientBuyBtn.addActionListener(e -> {
+            Object obj = ((DefaultMutableTreeNode) clientAvailableTree.getSelectionModel()
+                    .getSelectionPath().getLastPathComponent()).getUserObject();
+            if (obj instanceof Product) {
+                try {
+                    clientController.buy((Product) obj, Integer.parseInt(clientAmountField.getText()));
+                } catch (Client.NotEnoughMoneyException e1) {
+                    JOptionPane.showMessageDialog(panel1, "Nie ma tyle artykułów na stanie.");
+                } catch (Shop.NotEnoughAmountException e1) {
+                    JOptionPane.showMessageDialog(panel1, "Nie masz wystarczająco dużo pieniędzy.");
+                }
+                refreshClient();
+            }
+        });
+        // shop panel
         shopPanel.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
@@ -87,12 +103,6 @@ public class MainWindow {
                 }
             }
         });
-        historyPanel.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentShown(ComponentEvent e) {
-                refreshHistory();
-            }
-        });
         shopAddBtn.addActionListener(e -> {
             Object obj = ((DefaultMutableTreeNode) shopAvailableTree.getSelectionModel()
                     .getSelectionPath().getLastPathComponent()).getUserObject();
@@ -109,18 +119,11 @@ public class MainWindow {
                 refreshShop();
             }
         });
-        clientBuyBtn.addActionListener(e -> {
-            Object obj = ((DefaultMutableTreeNode) clientAvailableTree.getSelectionModel()
-                    .getSelectionPath().getLastPathComponent()).getUserObject();
-            if (obj instanceof Product) {
-                try {
-                    clientController.buy((Product) obj, Integer.parseInt(clientAmountField.getText()));
-                } catch (Client.NotEnoughMoneyException e1) {
-                    JOptionPane.showMessageDialog(panel1, "Nie ma tyle artykułów na stanie.");
-                } catch (Shop.NotEnoughAmountException e1) {
-                    JOptionPane.showMessageDialog(panel1, "Nie masz wystarczająco dużo pieniędzy.");
-                }
-                refreshClient();
+        // history panel
+        historyPanel.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                refreshHistory();
             }
         });
     }
