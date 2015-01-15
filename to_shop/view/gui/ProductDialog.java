@@ -10,8 +10,8 @@ public class ProductDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JSpinner spinner1;
-    private JSpinner spinner2;
+    private JSpinner amount;
+    private JSpinner price;
     private JLabel productName;
     private DetailedProduct product;
 
@@ -23,7 +23,9 @@ public class ProductDialog extends JDialog {
 
         buttonOK.addActionListener(e -> onOK());
         buttonCancel.addActionListener(e -> onCancel());
-
+        productName.setText(product.unPack().toString());
+        amount.setValue(product.getAmount());
+        price.setValue(product.getPrice());
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
