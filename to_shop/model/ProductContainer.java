@@ -15,4 +15,6 @@ public interface ProductContainer {
 	public <T> Collection<DetailedProduct> getProductCollection(Class<T> clazz);
 
 	public void rmProduct(Product item);
+
+	Collection<DetailedProduct> getRWProductCollection();
 }

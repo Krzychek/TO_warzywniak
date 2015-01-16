@@ -31,7 +31,7 @@ public class UniqueProductContainer implements ProductContainer {
 	public void rmProduct(Product item) {
 		productList.remove(item.unPack());
 	}
-	
+
 	@Override
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder();
@@ -44,6 +44,11 @@ public class UniqueProductContainer implements ProductContainer {
 		strBuilder.append("]");
 
 		return strBuilder.toString();
+	}
+
+	@Override
+	public Collection<DetailedProduct> getRWProductCollection() {
+		return productList.values();
 	}
 
 	@Override

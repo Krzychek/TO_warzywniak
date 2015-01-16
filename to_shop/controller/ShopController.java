@@ -23,7 +23,7 @@ public class ShopController {
     }
 
     public Collection<DetailedProduct> getProductCollection() {
-        return shop.getProductCollection();
+        return shop.getRWProductCollection();
     }
 
     public void toDefaultProductSet() {

@@ -15,6 +15,11 @@ public class Shop extends Observable {
 	private List<Shop> shopList = new ArrayList<>();
 	private ProductContainer container;
 	private List<DetailedProduct> discountList;
+
+	public Collection<DetailedProduct> getRWProductCollection() {
+		return container.getRWProductCollection();
+	}
+
 	public static class NotEnoughAmountException extends Exception {
 		public NotEnoughAmountException(int exp, int was) {
 			super("expected: " + exp +"; was: " + was);
