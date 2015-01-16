@@ -20,7 +20,7 @@ public class UniqueProductContainer implements ProductContainer {
 			else
 				productList.put(item, new ProductWrapper(item));
 		} else {
-			productList.get(item).addAmount(item.getAmount());
+			productList.get(item.unPack()).addAmount(item.getAmount());
 		}
 	}
 

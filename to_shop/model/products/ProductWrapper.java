@@ -6,13 +6,10 @@ public class ProductWrapper extends DetailedProduct {
     private int amount;
     private double discount;
 
-    private ProductWrapper() {
-    }
+    private ProductWrapper() {}
 
     public ProductWrapper(Product product) {
-        this.product = product;
-        this.price = Double.POSITIVE_INFINITY;
-        this.amount = 0;
+        this(product, Double.POSITIVE_INFINITY, 0);
     }
 
     public ProductWrapper(Product product, double price, int amount) {
@@ -21,6 +18,7 @@ public class ProductWrapper extends DetailedProduct {
         this.amount = amount;
         this.price = Double.POSITIVE_INFINITY;
         this.amount = 0;
+        this.discount = 0;
     }
 
     @Override
@@ -45,7 +43,7 @@ public class ProductWrapper extends DetailedProduct {
 
     @Override
     public double getPrice() {
-        return price;
+        return price * (1-discount);
     }
 
     @Override
@@ -96,6 +94,7 @@ public class ProductWrapper extends DetailedProduct {
 
     @Override
     public String toString() {
-        return product.toString() + " - " + price + " x " + amount;
+        if (price == Double.POSITIVE_INFINITY) return product.toString() + " x" + amount;
+        return product.toString() + " : " + price + "zł x" + amount;
     }
 }
