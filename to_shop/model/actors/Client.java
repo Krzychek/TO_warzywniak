@@ -23,6 +23,11 @@ public class Client extends Observable {
         addObserver(EventHistory.getInstance());
     }
 
+    @Override
+    public String toString() {
+        return "client";
+    }
+
     public void takeMoney(double price) throws NotEnoughMoneyException {
         if (money - price < 0)
             throw new NotEnoughMoneyException(money, price);

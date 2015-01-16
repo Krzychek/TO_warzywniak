@@ -44,6 +44,11 @@ public class Shop extends Observable {
 		container.addProduct(detailedProduct);
 	}
 
+	@Override
+	public String toString() {
+		return "shop";
+	}
+
 	public Product sellProduct(Product item, int amount, Client client) throws NotEnoughAmountException, Client.NotEnoughMoneyException {
 		DetailedProduct product = getDetailedProduct(item);
 		if (amount > product.getAmount())

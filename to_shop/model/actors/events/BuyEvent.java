@@ -32,6 +32,6 @@ public class BuyEvent extends Event {
 
     @Override
     public String toString() {
-        return "bought: " + item + " from " + shop;
+        return "bought " + item + " from " + shop;
     }
 }

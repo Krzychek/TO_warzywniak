@@ -35,7 +35,7 @@ public class SellEvent extends Event {
 
     @Override
     public String toString() {
-        return "sold: " + item + " to " + client;
+        return "sold " + item + " to " + client;
     }
 
 }
