@@ -6,8 +6,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductTreeModel extends DefaultTreeModel {
     private HashMap<String, DefaultMutableTreeNode> categoryMap = new HashMap<>();
@@ -20,10 +18,7 @@ public class ProductTreeModel extends DefaultTreeModel {
     }
 
     public void update(Collection<Product> data) {
-        List<Product> toRemove = productMap.keySet().stream().filter(key -> !data.contains(key))
-                .collect(Collectors.toList());
-
-        for (Product product : toRemove) {
+        productMap.keySet().stream().filter(key -> !data.contains(key)).forEach(product -> {
             DefaultMutableTreeNode node = productMap.remove(product);
             DefaultMutableTreeNode category = (DefaultMutableTreeNode) node.getParent();
             if (category.getChildCount() <= 1) {
@@ -31,7 +26,7 @@ public class ProductTreeModel extends DefaultTreeModel {
                 removeNodeFromParent(category);
             }
             removeNodeFromParent(node);
-        }
+        });
 
         for (Product item: data) {
             if (!productMap.containsKey(item)) {
@@ -45,6 +40,8 @@ public class ProductTreeModel extends DefaultTreeModel {
                     if (top.getChildCount() == 1) nodeStructureChanged(top);
                 }
                 insertNodeInto(itemNode, categoryNode, categoryNode.getChildCount());
+            } else {
+                nodeChanged(productMap.get(item));
             }
         }
     }
