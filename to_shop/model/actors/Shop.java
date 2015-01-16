@@ -2,6 +2,7 @@ package to_shop.model.actors;
 
 import to_shop.model.ProductContainer;
 import to_shop.model.UniqueProductContainer;
+import to_shop.model.actors.events.SellEvent;
 import to_shop.model.products.DetailedProduct;
 import to_shop.model.products.Product;
 import to_shop.model.products.ProductWrapper;
@@ -54,8 +55,10 @@ public class Shop extends Observable {
 		if (amount > product.getAmount())
 			throw new NotEnoughAmountException(amount, product.getAmount());
 		client.takeMoney(amount * product.getPrice());
-		product.addAmount(-amount);
+		setChanged();
+		notifyObservers(new SellEvent(client, item, product.getPrice(), amount));
 
+		product.addAmount(-amount);
 		DetailedProduct result = product.clone();
 		result.setAmount(amount);
 		result.setPrice(Double.POSITIVE_INFINITY);

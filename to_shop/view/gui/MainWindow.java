@@ -36,6 +36,7 @@ public class MainWindow {
     private JFormattedTextField clientAmountField;
     private JList<Object> historyList;
     private JPanel historyPanel;
+    private JLabel clientMoney;
 
     public MainWindow(ClientController clientController, ShopController shopController) {
         this.clientController = clientController;
@@ -133,7 +134,7 @@ public class MainWindow {
     public void refreshClient() {
         ((ProductTreeModel) clientOwnedTree.getModel()).update((Collection) clientController.getProductCollection());
         ((ProductTreeModel) clientAvailableTree.getModel()).update((Collection) clientController.getAvailableProducts());
-
+        clientMoney.setText(clientController.getStatistics().get("money"));
     }
 
     @SuppressWarnings("unchecked")
