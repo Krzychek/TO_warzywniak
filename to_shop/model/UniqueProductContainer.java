@@ -53,8 +53,7 @@ public class UniqueProductContainer implements ProductContainer {
 
 	@Override
 	public Collection<DetailedProduct> getProductCollection() {
-		return productList.entrySet().stream().map(entry -> new ROProductWrapper(entry.getValue()))
-				.collect(Collectors.toList());
+		return productList.values().stream().map(ROProductWrapper::new).collect(Collectors.toList());
 	}
 
 	@Override
