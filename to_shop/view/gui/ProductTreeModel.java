@@ -4,15 +4,15 @@ import to_shop.model.products.Product;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductTreeModel extends DefaultTreeModel {
-    HashMap<String, DefaultMutableTreeNode> categoryMap = new HashMap<>();
-    HashMap<Product, DefaultMutableTreeNode> productMap = new HashMap<>();
-    DefaultMutableTreeNode top;
+    private HashMap<String, DefaultMutableTreeNode> categoryMap = new HashMap<>();
+    private HashMap<Product, DefaultMutableTreeNode> productMap = new HashMap<>();
+    private DefaultMutableTreeNode top;
 
     public ProductTreeModel() {
         super(new DefaultMutableTreeNode());
@@ -20,11 +20,9 @@ public class ProductTreeModel extends DefaultTreeModel {
     }
 
     public void update(Collection<Product> data) {
-        List<Product> toRemove = new ArrayList<>();
-        productMap.keySet().forEach((key -> {
-            if (!data.contains(key))
-                toRemove.add(key);
-        }));
+        List<Product> toRemove = productMap.keySet().stream().filter(key -> !data.contains(key))
+                .collect(Collectors.toList());
+
         for (Product product : toRemove) {
             DefaultMutableTreeNode node = productMap.remove(product);
             DefaultMutableTreeNode category = (DefaultMutableTreeNode) node.getParent();
@@ -34,6 +32,7 @@ public class ProductTreeModel extends DefaultTreeModel {
             }
             removeNodeFromParent(node);
         }
+
         for (Product item: data) {
             if (!productMap.containsKey(item)) {
                 DefaultMutableTreeNode itemNode = new DefaultMutableTreeNode(item);
@@ -43,11 +42,9 @@ public class ProductTreeModel extends DefaultTreeModel {
                     categoryNode = new DefaultMutableTreeNode(item.getCategory());
                     categoryMap.put(item.getCategory(), categoryNode);
                     insertNodeInto(categoryNode, top, top.getChildCount());
-                    if (top.getChildCount() == 1)
-                        nodeStructureChanged(top);
+                    if (top.getChildCount() == 1) nodeStructureChanged(top);
                 }
                 insertNodeInto(itemNode, categoryNode, categoryNode.getChildCount());
-
             }
         }
     }
