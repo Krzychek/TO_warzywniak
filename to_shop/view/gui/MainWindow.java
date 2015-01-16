@@ -99,6 +99,7 @@ public class MainWindow {
                         ProductDialog dialog = new ProductDialog((DetailedProduct) obj);
                         dialog.pack();
                         dialog.setVisible(true);
+                        refreshShop();
                     }
                 }
             }
