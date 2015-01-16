@@ -26,14 +26,10 @@ public class EventHistory implements Observer {
         }
     }
 
-    public Object[] getHistoryArray() {
-        List<String> result = new LinkedList();
-        historyDB.entrySet().forEach((entry) -> {
-            String category = entry.getKey().toString();
-            entry.getValue().stream().forEach(item -> {
-                result.add(category + ":" + item.toString());
-            });
-        });
+    public Object[] getHistoryStringArray() {
+        List<String> result = new LinkedList<>();
+        for (Map.Entry<Observable, List<Event>> entry : historyDB.entrySet())
+            result.add(entry.getKey() + " " + entry.getValue());
         return result.toArray();
     }
 }

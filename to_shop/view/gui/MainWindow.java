@@ -143,6 +143,6 @@ public class MainWindow {
     }
 
     public void refreshHistory() {
-        historyList.setListData(EventHistory.getInstance().getHistoryArray());
+        historyList.setListData(EventHistory.getInstance().getHistoryStringArray());
     }
 }
