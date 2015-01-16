@@ -7,10 +7,11 @@ import javax.swing.tree.DefaultTreeModel;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ProductTreeModel extends DefaultTreeModel {
     private Map<String, DefaultMutableTreeNode> categoryMap = new HashMap<>();
-    private Map<Product, DefaultMutableTreeNode> productMap = new HashMap<>();
+    private Map<Product, DefaultMutableTreeNode> productMap = new ConcurrentHashMap<>();
     private DefaultMutableTreeNode top;
 
     public ProductTreeModel() {

@@ -52,7 +52,7 @@ public abstract class Product implements Cloneable {
 
     @Override
     public int hashCode() {
-        return toString().length();
+        return unPack().toString().length();
     }
 
     @Override
