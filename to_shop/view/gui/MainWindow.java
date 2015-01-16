@@ -34,7 +34,7 @@ public class MainWindow {
     private JTree clientOwnedTree;
     private JButton clientBuyBtn;
     private JFormattedTextField clientAmountField;
-    private JList historyList;
+    private JList<Object> historyList;
     private JPanel historyPanel;
 
     public MainWindow(ClientController clientController, ShopController shopController) {
@@ -129,12 +129,14 @@ public class MainWindow {
         });
     }
 
+    @SuppressWarnings("unchecked")
     public void refreshClient() {
         ((ProductTreeModel) clientOwnedTree.getModel()).update((Collection) clientController.getProductCollection());
         ((ProductTreeModel) clientAvailableTree.getModel()).update((Collection) clientController.getAvailableProducts());
 
     }
 
+    @SuppressWarnings("unchecked")
     public void refreshShop() {
         ((ProductTreeModel) shopInTree.getModel()).update((Collection) shopController.getProductCollection());
         ((ProductTreeModel) shopAvailableTree.getModel()).update(shopController.getAvailableProducts());
