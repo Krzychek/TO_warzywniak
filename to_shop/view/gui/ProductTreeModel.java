@@ -6,10 +6,11 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ProductTreeModel extends DefaultTreeModel {
-    private HashMap<String, DefaultMutableTreeNode> categoryMap = new HashMap<>();
-    private HashMap<Product, DefaultMutableTreeNode> productMap = new HashMap<>();
+    private Map<String, DefaultMutableTreeNode> categoryMap = new HashMap<>();
+    private Map<Product, DefaultMutableTreeNode> productMap = new HashMap<>();
     private DefaultMutableTreeNode top;
 
     public ProductTreeModel() {
