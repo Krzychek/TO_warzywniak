@@ -1,6 +1,7 @@
 package to_shop.model.products;
 
 public abstract class DetailedProduct extends Product {
+    @Override
     public abstract int getAmount();
 
     public abstract void setAmount(int amount);

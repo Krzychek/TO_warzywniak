@@ -49,8 +49,9 @@ public class Shop extends Observable {
 		if (amount > product.getAmount())
 			throw new NotEnoughAmountException(amount, product.getAmount());
 		client.takeMoney(amount * product.getPrice());
+		Product result = product.clone();
 		product.addAmount(-amount);
-		return item;
+		return result;
 	}
 
 	public void addProductToDiscountList(Product item) {

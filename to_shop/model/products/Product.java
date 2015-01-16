@@ -70,4 +70,8 @@ public abstract class Product implements Cloneable {
     }
 
     public abstract String getCategory();
+
+    public int getAmount() {
+        return 1;
+    }
 }
