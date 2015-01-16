@@ -30,8 +30,8 @@ public class BuyEvent extends Event {
         return item;
     }
 
-    public Shop getShop() {
-        return shop;
+    @Override
+    public String toString() {
+        return "bought: " + item + " from " + shop;
     }
-
 }

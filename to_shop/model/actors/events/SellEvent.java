@@ -29,12 +29,13 @@ public class SellEvent extends Event {
         return item;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
     public int getAmount() {
         return amount;
+    }
+
+    @Override
+    public String toString() {
+        return "sold: " + item + " to " + client;
     }
 
 }
