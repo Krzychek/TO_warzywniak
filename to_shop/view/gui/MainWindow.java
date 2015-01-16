@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
@@ -44,13 +45,22 @@ public class MainWindow {
 
         clientAmountField.setFormatterFactory(new DefaultFormatterFactory(new NumberFormatter(NumberFormat.getIntegerInstance())));
         initializeListeners();
-        clientAvailableTree.setModel(new ProductTreeModel());
-        clientOwnedTree.setModel(new ProductTreeModel());
-        shopAvailableTree.setModel(new ProductTreeModel());
-        shopInTree.setModel(new ProductTreeModel());
+        prepareProductTree(clientAvailableTree);
+        prepareProductTree(clientOwnedTree);
+        prepareProductTree(shopAvailableTree);
+        prepareProductTree(shopInTree);
         refreshShop();
         refreshClient();
         refreshHistory();
+    }
+
+    private void prepareProductTree(JTree tree) {
+        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+        renderer.setLeafIcon(null);
+        renderer.setClosedIcon(null);
+        renderer.setOpenIcon(null);
+        tree.setCellRenderer(renderer);
+        tree.setModel(new ProductTreeModel());
     }
 
     public static void main(String[] args) {
